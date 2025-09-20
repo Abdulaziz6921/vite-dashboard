@@ -57,13 +57,21 @@
   category: ""
 }
 
-# Установка зависимостей
+```
+
+# Установка
+
+```
+git clone https://github.com/Abdulaziz6921/vite-dashboard
+
+cd weather-forecast-app
+
 npm install
 
+```
+
 # Запуск в режиме разработки
+
+```
 npm run dev
-
-# Сборка проекта
-npm run build
-
 ```
