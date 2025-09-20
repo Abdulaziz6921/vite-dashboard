@@ -62,9 +62,9 @@
 # Установка
 
 ```
-git clone https://github.com/Abdulaziz6921/vite-dashboard
+git clone https://github.com/Abdulaziz6921/vite-dashboard.git
 
-cd weather-forecast-app
+cd vite-dashboar
 
 npm install
 
