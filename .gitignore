@@ -26,5 +26,4 @@ Thumbs.db
 *.sublime-workspace
 *.sublime-project
 
-# Local cache or temp files
-.cache/
+
