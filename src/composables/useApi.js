@@ -23,35 +23,6 @@ export function useApi(endpoint) {
   const hasNextPage = computed(() => currentPage.value < totalPages.value);
   const hasPrevPage = computed(() => currentPage.value > 1);
 
-  // const buildParams = () => {
-  //   const params = {
-  //     page: currentPage.value,
-  //     limit: pageSize.value,
-  //   };
-
-  //   const now = new Date();
-
-  //   if (endpoint === "stocks") {
-  //     // For stocks, using today's date if no filter is set
-  //     const todayStr = now.toISOString().slice(0, 10);
-  //     params.dateFrom = filters.dateFrom || todayStr;
-  //     params.dateTo = filters.dateTo || todayStr;
-  //   } else {
-  //     // For other endpoints, default to last 1 month if no filter
-  //     const lastMonth = new Date();
-  //     lastMonth.setMonth(now.getMonth() - 1);
-  //     params.dateFrom =
-  //       filters.dateFrom || lastMonth.toISOString().slice(0, 10);
-  //     params.dateTo = filters.dateTo || now.toISOString().slice(0, 10);
-  //   }
-
-  //   if (filters.search) params.search = filters.search;
-  //   if (filters.status) params.status = filters.status;
-  //   if (filters.category) params.category = filters.category;
-
-  //   return params;
-  // };
-
   const buildParams = () => {
     const params = {
       page: currentPage.value,
@@ -61,10 +32,12 @@ export function useApi(endpoint) {
     const now = new Date();
 
     if (endpoint === "stocks") {
+      // For stocks, using today's date if no filter is set
       const todayStr = now.toISOString().slice(0, 10);
       params.dateFrom = filters.dateFrom || todayStr;
       params.dateTo = filters.dateTo || todayStr;
     } else {
+      // For other endpoints, default to last 1 month if no filter
       const lastMonth = new Date();
       lastMonth.setMonth(now.getMonth() - 1);
       params.dateFrom =
