@@ -1,0 +1,21 @@
+# netlify.toml
+
+[build]
+  # Command to build your Vite project
+  command = "npm run build"
+
+  # Directory to publish after build (Vite outputs to 'dist' by default)
+  publish = "dist"
+
+[build.environment]
+  # Node version for Netlify build (adjust if your project needs another version)
+  NODE_VERSION = "22"
+
+# Optional: Set environment variables here or in Netlify dashboard
+# [build.environment]
+#   VITE_API_URL = "https://your-api-url.com"
+#   ANOTHER_ENV_VAR = "value"
+
+[context.production.environment]
+  # Production-specific environment variables
+  NODE_ENV = "production"
