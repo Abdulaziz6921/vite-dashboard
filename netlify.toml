@@ -9,7 +9,7 @@
 
 [build.environment]
   # Node version for Netlify build (adjust if your project needs another version)
-  NODE_VERSION = "22"
+  NODE_VERSION = "20"
 
 # Optional: Set environment variables here or in Netlify dashboard
 # [build.environment]
