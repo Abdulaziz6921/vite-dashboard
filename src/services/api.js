@@ -33,25 +33,26 @@
 // };
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL; // e.g., http://109.73.206.144:6969/api
+const BASE_URL = import.meta.env.VITE_API_BASE_URL; // your real backend
 const API_KEY = import.meta.env.VITE_API_KEY;
 
+// In production, use Netlify function proxy
+const PROXY_URL = import.meta.env.PROD ? "/.netlify/functions/proxy" : BASE_URL;
+
 const apiClient = axios.create({
-  baseURL: BASE_URL,
+  baseURL: PROXY_URL,
   headers: { "Content-Type": "application/json" },
 });
 
-// Attach API key to params
 function withKey(params = {}) {
-  return { key: API_KEY, ...params };
+  return import.meta.env.PROD
+    ? { endpoint: "", ...params } // endpoint will be specified dynamically
+    : { key: API_KEY, ...params };
 }
-
-// Detect if production (use proxy)
-const isProduction = import.meta.env.PROD;
 
 export const apiService = {
   async getIncomes(params = {}) {
-    if (isProduction) {
+    if (import.meta.env.PROD) {
       return (
         await apiClient.get("", { params: { endpoint: "incomes", ...params } })
       ).data;
@@ -60,7 +61,7 @@ export const apiService = {
   },
 
   async getOrders(params = {}) {
-    if (isProduction) {
+    if (import.meta.env.PROD) {
       return (
         await apiClient.get("", { params: { endpoint: "orders", ...params } })
       ).data;
@@ -69,7 +70,7 @@ export const apiService = {
   },
 
   async getSales(params = {}) {
-    if (isProduction) {
+    if (import.meta.env.PROD) {
       return (
         await apiClient.get("", { params: { endpoint: "sales", ...params } })
       ).data;
@@ -78,7 +79,7 @@ export const apiService = {
   },
 
   async getStocks(params = {}) {
-    if (isProduction) {
+    if (import.meta.env.PROD) {
       return (
         await apiClient.get("", { params: { endpoint: "stocks", ...params } })
       ).data;
